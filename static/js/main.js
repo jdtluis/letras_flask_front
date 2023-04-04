@@ -7,10 +7,10 @@ Highcharts.chart(containers[i], {
         type: 'spline'
     },
     title: {
-        text: 'Curva de tasas'
+        text: containers[i].id
     },
     subtitle: {
-        text: containers[i].id
+        text: 'Curva de tasas ' + containers[i].id
     },
     xAxis: {
             title: {

@@ -3,6 +3,24 @@
     padding: 100;
 }
 
+.login .form .form-select {
+  border: none;
+  background: none;
+  box-shadow: 0px 2px 0px 0px white;
+  width: 80%;
+  font-size: 1em;
+  outline: none;
+}
+
+.login .date input[type=date].date {
+  border: none;
+  background: none;
+  box-shadow: 0px 2px 0px 0px white;
+  width: 80%;
+  font-size: 2em;
+  outline: none;
+}
+
 header {
     background-color:rgba(33, 33, 33, 0.9);
     color:#ffffff;
@@ -11,6 +29,7 @@ header {
     height:50px;
     position:relative;
 }
+
 
 header h2{
     font-size: 22px;
@@ -26,24 +45,23 @@ body h1{
     padding: 10px 0;
     width: 80%;
     text-align: center;
-    color: #fcfcfc;
 }
 
-form select, input {
-  // A reset of styles, including removing the default dropdown arrow
-  appearance: none;
-  // Additional resets for further consistency
-  background-color: transparent;
-  padding: 0 1em 0 0;
-  margin: 0;
-  border: 5px solid green;
-  border-radius: 5px;
-  width: 150px;
-  //font-family: Helvetica;
-  font-size: 15px;
-  cursor: inherit;
-  //line-height: inherit;
-  margin-bottom: 20px;
+
+.login {
+  color: white;
+  background: background: #136a8a;
+  background:
+    -webkit-linear-gradient(to right, #267871, #136a8a);
+  background:
+    linear-gradient(to right, #267871, #136a8a);
+  margin: auto;
+  box-shadow:
+    0px 2px 10px rgba(0,0,0,0.2),
+    0px 10px 20px rgba(0,0,0,0.3),
+    0px 30px 60px 1px rgba(0,0,0,0.5);
+  border-radius: 8px;
+  padding: 50px;
 }
 
 
@@ -56,13 +74,6 @@ header a, a:visited {
     color:none;
 }
 
-html {
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(7,65,158,1) 20%, rgba(42,178,206,1) 100%);
-}
-
-body {
-    background:url("background.jpg") no-repeat scroll top center transparent;
-}
 
 
 .actions, .chart {

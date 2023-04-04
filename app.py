@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request
-import os
-import json
 import requests
-import pandas as pd
+from datetime import timedelta, date as dt
 from enum import Enum
 
 app = Flask(__name__)
@@ -14,9 +12,10 @@ class tipoletra(Enum):
 
 @app.route('/')
 @app.route('/home', methods=['GET', 'POST'])
-def index(chartID = 'chart_ID', chart_height = 400): #
+def index(chartID = 'chart_ID', chart_height = 400):
+	dates = [dt.today().__add__(timedelta(days=-20)).isoformat(), dt.today().isoformat()]
 	if request.method == 'GET':
-		return render_template('/ticker_block.html', chartID='', series=[], title='', container=[])
+		return render_template('/ticker_block.html', chartID='', series=[], title='', container=[], dates=dates)
 
 	if request.method == "POST":
 		letras = request.form['letra']
@@ -43,7 +42,7 @@ def index(chartID = 'chart_ID', chart_height = 400): #
 				series[s] = [values, fitted]
 			title[s] = {"text": s}
 			container[s] = s
-		return render_template('/ticker_block.html', chartID=chartID, series=series, title=title, container=container)
+		return render_template('/ticker_block.html', chartID=chartID, series=series, title=title, container=container, dates=dates)
 
 
 #if __name__ == "__main__":
