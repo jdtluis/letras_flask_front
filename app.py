@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 import requests
 from datetime import timedelta, date as dt
 from enum import Enum
+import threading
+
 
 app = Flask(__name__)
 
@@ -10,13 +12,25 @@ class tipoletra(Enum):
 	ledes = 1
 	lecer = 2
 
+
+class NewThreadedTask(threading.Thread):
+	def __init__(self):
+		super(NewThreadedTask, self).__init__()
+
+	def run(self):
+		url = f"https://api-letras.onrender.com/letras?tipo=ledes&date=2023-03-01"
+		r = requests.get(url)
+		print('Threaded task has been completed')
+
+
 @app.route('/')
 @app.route('/home', methods=['GET', 'POST'])
 def index(chartID = 'chart_ID', chart_height = 400):
 	dates = [dt.today().__add__(timedelta(days=-20)).isoformat(), dt.today().isoformat()]
 	if request.method == 'GET':
-		url = f"https://api-letras.onrender.com/letras?tipo=ledes&date=2023-03-01"
-		r = requests.get(url)
+		new_thread = NewThreadedTask()
+		new_thread.start()
+		#new_thread.join()
 		return render_template('/ticker_block.html', chartID='', series=[], title='', container=[], dates=dates)
 
 	if request.method == "POST":
