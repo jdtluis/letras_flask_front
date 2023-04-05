@@ -15,6 +15,8 @@ class tipoletra(Enum):
 def index(chartID = 'chart_ID', chart_height = 400):
 	dates = [dt.today().__add__(timedelta(days=-20)).isoformat(), dt.today().isoformat()]
 	if request.method == 'GET':
+		url = f"https://api-letras.onrender.com/letras?tipo=ledes&date=2023-03-01"
+		r = requests.get(url)
 		return render_template('/ticker_block.html', chartID='', series=[], title='', container=[], dates=dates)
 
 	if request.method == "POST":
