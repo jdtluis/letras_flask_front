@@ -45,16 +45,21 @@ def index(chartID = 'chart_ID', chart_height = 400):
 		title = {}
 		container = {}
 
+		r = None
+
 		def get_req(url):
-			global r
+			nonlocal r
 			r = requests.get(url)
 
 		for s in letras:
 			url = f"https://api-letras.onrender.com/letras?tipo={s}&date={date}"
-			r = requests.get(url)
+			#r = requests.get(url)
 			t = threading.Thread(name='non-daemon', target=get_req(url))
 			t.start()
-			data = r.json()
+			if not r:
+				data = r.json()
+			else:
+				data = None
 
 			if not data:
 				series[s] = [[0,0],[0,0]]
