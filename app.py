@@ -12,13 +12,14 @@ class tipoletra(Enum):
 	ledes = 1
 	lecer = 2
 
-
+#r = None
 class NewThreadedTask(threading.Thread):
 	def __init__(self):
 		super(NewThreadedTask, self).__init__()
 
 	def run(self):
 		url = f"https://api-letras.onrender.com/letras?tipo=ledes&date=2023-03-01"
+		#global r
 		r = requests.get(url)
 		print('Threaded task has been completed')
 
@@ -56,7 +57,8 @@ def index(chartID = 'chart_ID', chart_height = 400):
 			#r = requests.get(url)
 			t = threading.Thread(name='non-daemon', target=get_req(url))
 			t.start()
-			if not r:
+			#t.join()
+			if r:
 				data = r.json()
 			else:
 				data = None
