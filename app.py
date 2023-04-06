@@ -50,7 +50,11 @@ def index(chartID = 'chart_ID', chart_height = 400):
 
 		def get_req(url):
 			nonlocal r
-			r = requests.get(url, timeout=10)
+			try:
+				r = requests.get(url, timeout=7)
+			except Exception as e:
+				r = None
+				print(e)
 
 		for s in letras:
 			url = f"https://api-letras.onrender.com/letras?tipo={s}&date={date}"
