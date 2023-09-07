@@ -27,7 +27,8 @@ class NewThreadedTask(threading.Thread):
 @app.route('/')
 @app.route('/home', methods=['GET', 'POST'])
 def index(chartID = 'chart_ID', chart_height = 400):
-	dates = [dt.today().__add__(timedelta(days=-20)).isoformat(), dt.today().isoformat()]
+	#dates = [dt.today().__add__(timedelta(days=-20)).isoformat(), dt.today().isoformat()]
+	dates = [dt(2023,1,1).isoformat(), dt.today().isoformat()]
 	if request.method == 'GET':
 		new_thread = NewThreadedTask()
 		new_thread.start()
